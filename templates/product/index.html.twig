@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Entrepôt{% endblock %}
+
+{% block body %}
+<style>
+table {
+    border-collapse: collapse;
+}
+
+td, th {
+    border: 1px solid black;
+    padding: 2px;
+}
+</style>
+
+<h1>Votre entrepôt</h1>
+
+<a>Ajouter un produit</a>
+
+<table>
+    <thead>
+        <th>Produit</th>
+        <th>Référence</th>
+        <th>Catégorie</th>
+        <th>Stock actuel</th>
+        <th>Date de création</th>
+        <th>Actions</th>
+    </thead>
+    <tbody>
+    {% for product in products %}
+        <tr>
+            <td>{{ product.name }}</td>
+            <td>{{ product.reference }}</td>
+            <td>{{ product.category is not empty ? product.category.name : '' }}</td>
+            <td>{{ product.quantity }}</td>
+            <td>{{ product.creationDate | date() }}</td>
+            <td>
+                <a>Modifier</a>
+                <a>Supprimer</a>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

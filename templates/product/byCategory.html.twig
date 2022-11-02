@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Entrepôt{% endblock %}
+
+{% block body %}
+<style>
+table {
+    border-collapse: collapse;
+}
+
+td, th {
+    border: 1px solid black;
+    padding: 2px;
+}
+</style>
+
+<h1>Produits par Catégorie</h1>
+
+<a href="{{path('product_index')}}">Retourner à l'entrepôt</a>
+
+<table>
+    <thead>
+        <th>ID</th>
+        <th>Catégorie</th>
+        <th>Liste produits</th>
+
+    </thead>
+    <tbody>
+        {% for category in categories %}
+        <tr>
+            <td>{{ category.displayOrder }}</td>
+            <td>{{ category.name }}</td>
+            <td>
+                <a href="{{ path('product_by_category_list', { 'categoryId': category.id} )}}">Voir</a>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

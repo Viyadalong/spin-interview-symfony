@@ -20,27 +20,38 @@ class Product
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotNull
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotNull
+     * @Assert\PositiveOrZero
      */
     private $quantity;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotNull
+     * @Assert\Length(
+     *      min = 7,
+     *      max = 7,
+     *      minMessage = "The reference must be at least {{ limit }} characters long",
+     *      maxMessage = "The reference cannot be longer than {{ limit }} characters"
+     * )
      */
     private $reference;
 
     /**
      * @ORM\Column(type="datetime")
+     * @Assert\NotNull
      */
     private $creationDate;
 
     /**
      * @ORM\ManyToOne(targetEntity=Category::class)
-     * @ORM\JoinColumn(nullable=true)
+     * @ORM\JoinColumn(nullable=false)
      */
     private $category;
 

@@ -14,32 +14,24 @@ td, th {
 }
 </style>
 
-<h1>Votre entrepôt</h1>
+<h1>Liste des produits de la catégorie :  {{ category.name }}</h1>
 
-<a href="{{path('product_create')}}">Ajouter un produit</a>&nbsp;&nbsp;
-<a href="{{path('product_by_category')}}">Voir par catégorie</a>
-
+<a href="{{path('product_index')}}">Retourner à l'entrepôt</a>&nbsp;&nbsp;
+<a href="{{path('product_by_category')}}">Retourner voir toutes les catégories</a>
 <table>
     <thead>
         <th>Produit</th>
         <th>Référence</th>
-        <th>Catégorie</th>
         <th>Stock actuel</th>
         <th>Date de création</th>
-        <th>Actions</th>
     </thead>
     <tbody>
-    {% for product in products %}
+        {% for product in products %}
         <tr>
             <td>{{ product.name }}</td>
             <td>{{ product.reference }}</td>
-            <td>{{ product.category is not empty ? product.category.name : '' }}</td>
             <td>{{ product.quantity }}</td>
             <td>{{ product.creationDate | date("d/m/Y") }}</td>
-            <td>
-                <a href="{{path('product_edit', { 'id': product.id} )}}">Modifier</a>
-                <a href="{{path('product_delete', { 'id': product.id} )}}">Supprimer</a>
-            </td>
         </tr>
     {% endfor %}
     </tbody>
